@@ -14,15 +14,19 @@ export class AppComponent implements OnInit {
     private userService: UserService,
     private toastr: ToastrService
   ) {}
-  ngOnInit() {
+
+  getData() {
     this.userService.getUser().subscribe(
       (user: any) => {
-        console.log(user)
+        console.log(user);
         this.user = user.results[0];
       },
       (err) => {
         this.toastr.error(err.status, 'Oops');
       }
     );
+  }
+  ngOnInit() {
+    this.getData();
   }
 }
